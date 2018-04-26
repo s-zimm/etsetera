@@ -21,10 +21,25 @@ class SpecificCategoryScreen extends Component {
         }
     }
 
+    getProducts = () => {
+        let { products, match } = this.props;
+        let categoricalProducts = products.filter(product => product.category.title === match.params.category);
+        return categoricalProducts;
+    }
+
     render() {
+        let { match } = this.props;
+        let productArray = this.getProducts();
+
         return (
             <div>
-                <h1>{this.props.match.params.category}</h1>
+                <h1>{match.params.category}</h1>
+                {productArray.map(product => (
+                    <div>
+                        <h1>{product.title}</h1>
+                        <p>{product.description}</p>
+                    </div>
+                ))}
             </div>
         )
     }
