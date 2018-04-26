@@ -11,6 +11,10 @@
 }
 
 .single-category {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin: 20px 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SingleCategory = ({ title, description }) => {
     return (
-        <div className="single-category">
+        <Link to={`/categories/${title}`} className="single-category">
             <h2>{title}</h2>
             <p>{description}</p>
-        </div>
+        </Link>
     )
 }
 
