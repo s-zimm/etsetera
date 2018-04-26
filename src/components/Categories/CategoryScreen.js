@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setCategories } from '../../actions/actions'
 
 class CategoryScreen extends React.Component {
     componentDidMount() {
@@ -8,7 +11,7 @@ class CategoryScreen extends React.Component {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWUwY2NiY2Y0YTlmZjAwMTQ2NjU3ZGQiLCJpYXQiOjE1MjQ2ODIwNTIsImV4cCI6MTUyNzI3NDA1Mn0.huKbQu2mikb4bEWhWhsi_4tEq7HCttp8JFh9wopaty4'
             }
         })
-        .then(data => console.log(data.data))
+        .then(data => this.props.setCategories(data.data))
     }
 
     render() {
@@ -20,4 +23,10 @@ class CategoryScreen extends React.Component {
     }
 }
 
-export default CategoryScreen;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        setCategories
+    }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(CategoryScreen);
