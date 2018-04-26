@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setCategories } from '../../actions/actions'
 
+import SingleCategory from './SingleCategory';
+
 class CategoryScreen extends React.Component {
     componentDidMount() {
         axios.get('http://etsetera.herokuapp.com/category/', {
@@ -16,8 +18,14 @@ class CategoryScreen extends React.Component {
 
     render() {
         return (
-            <div>
-                This is the category screen
+            <div className="category-screen">
+                {this.props.categories.map(category => 
+                <SingleCategory
+                    key={category.id}
+                    id={category.id}
+                    title={category.title}
+                    description={category.description}
+                />)}
             </div>
         )
     }
@@ -29,4 +37,8 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(CategoryScreen);
+const mapStateToProps = (state) => ({
+    categories: state.categories
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);

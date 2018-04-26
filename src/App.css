@@ -3,3 +3,19 @@
     width: 100%;
     justify-content: space-around;
 }
+
+.category-screen {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.single-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 250px;
+    border: solid black 1px;
+}
