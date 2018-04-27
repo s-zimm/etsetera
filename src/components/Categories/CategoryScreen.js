@@ -10,7 +10,7 @@ class CategoryScreen extends React.Component {
     componentDidMount() {
         axios.get('http://etsetera.herokuapp.com/category/', {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWUwY2NiY2Y0YTlmZjAwMTQ2NjU3ZGQiLCJpYXQiOjE1MjQ2ODIwNTIsImV4cCI6MTUyNzI3NDA1Mn0.huKbQu2mikb4bEWhWhsi_4tEq7HCttp8JFh9wopaty4'
+                Authorization: this.props.auth.jwt
             }
         })
         .then(data => this.props.setCategories(data.data))
@@ -38,7 +38,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => ({
-    categories: state.categories
+    categories: state.categories,
+    auth: state.authentication
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);

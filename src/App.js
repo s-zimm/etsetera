@@ -8,6 +8,7 @@ import CategoryScreen from './components/Categories/CategoryScreen';
 import HomeScreen from './components/HomeScreen';
 import Navbar from './components/Navbar';
 import SpecificCategoryScreen from './components/Categories/SpecificCategoryScreen';
+import CartScreen from './components/Cart/CartScreen';
 
 const App = (props) => {
   return (
@@ -15,6 +16,7 @@ const App = (props) => {
         <div>
           <Navbar />
           <Route exact path="/" component={HomeScreen} />
+          <Route path="/cart" component={CartScreen} />
           <Route exact path="/categories" component={CategoryScreen} />
           <Route path="/categories/:category" component={SpecificCategoryScreen} />
         </div>
