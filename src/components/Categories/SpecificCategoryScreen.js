@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { setProducts } from '../../actions/actions';
+import { setProducts, updateCart } from '../../actions/actions';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
@@ -27,6 +27,28 @@ class SpecificCategoryScreen extends Component {
         return categoricalProducts;
     }
 
+    addProductFetch = (productId) => {
+        let postOptions = {
+            method: 'POST',
+            url: 'https://etsetera.herokuapp.com/cartItem',
+            headers: { "Authorization": this.props.auth.jwt },
+            data: {
+                quantity: 1,
+                product: {
+                     _id: productId
+                },
+                user: {
+                    _id: this.props.auth.id
+                }
+            }
+        }
+        axios(postOptions)
+        .then(data => {
+            console.log(data)
+            this.props.updateCart(data.data);
+        })
+    }
+
     render() {
         let { match } = this.props;
         let productArray = this.getProducts();
@@ -39,7 +61,7 @@ class SpecificCategoryScreen extends Component {
                         <h1>{product.title}</h1>
                         <p>{product.description}</p>
                         <p>{product.price}</p>
-                        <button>Add to Cart</button>
+                        <button onClick={() => this.addProductFetch(product.id)}>Add to Cart</button>
                     </div>
                 ))}
             </div>
@@ -49,7 +71,8 @@ class SpecificCategoryScreen extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        setProducts
+        setProducts,
+        updateCart
     }, dispatch);
 }
 

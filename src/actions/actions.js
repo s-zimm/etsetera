@@ -3,6 +3,7 @@ import axios from 'axios';
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_CART = 'SET_CART';
+export const UPDATE_CART = 'UPDATE_CART';
 
 export const setCategories = (categories) => ({
     type: SET_CATEGORIES,
@@ -24,4 +25,11 @@ export const setCart = (userId, jwt) => {
         type: SET_CART,
         payload: cartItems 
     });
+};
+
+export const updateCart = (product) => {
+    return ({
+        type: UPDATE_CART,
+        payload: product
+    })
 };

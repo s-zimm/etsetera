@@ -1,16 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setCart } from '../../actions/actions';
 
 class CartScreen extends Component {
-    render() {
+    // componentDidUpdate(prevProps) {
+    //     let { setCart, user } = this.props;
+    //     if (prevProps.cart !== this.props.cart) {
+    //         setCart(user.id, user.jwt);
+    //     }
+    // }
 
-        let { match } = this.props;
+    render() {
 
         return (
             <div>
-                <h1>Cart</h1>
+                {this.props.cart.map(item => {
+                    return (
+                        <div>
+                            <h4>{item.product.title}</h4>
+                            <p>{item.quantity}</p>
+                        </div>
+                    )
+                })}
             </div>
         )
     }
 }
 
-export default CartScreen;
+let mapStateToProps = (state) => ({
+    cart: state.cart,
+    user: state.authentication
+});
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        setCart
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartScreen);
