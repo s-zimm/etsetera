@@ -8,7 +8,7 @@ import SingleCategory from './SingleCategory';
 
 class CategoryScreen extends React.Component {
     componentDidMount() {
-        axios.get('http://etsetera.herokuapp.com/category/', {
+        axios.get('https://etsetera.herokuapp.com/category/', {
             headers: {
                 Authorization: this.props.auth.jwt
             }

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class SpecificCategoryScreen extends Component {
     componentDidMount() {
-        axios.get('http://etsetera.herokuapp.com/product/', {
+        axios.get('https://etsetera.herokuapp.com/product/', {
             headers: { Authorization: this.props.auth.jwt }
         })
         .then(data => this.props.setProducts(data.data))
@@ -14,7 +14,7 @@ class SpecificCategoryScreen extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.auth !== this.props.auth) {
-            axios.get('http://etsetera.herokuapp.com/product/', {
+            axios.get('https://etsetera.herokuapp.com/product/', {
                 headers: { Authorization: this.props.auth.jwt }
             })
             .then(data => this.props.setProducts(data.data))
@@ -35,7 +35,7 @@ class SpecificCategoryScreen extends Component {
             <div>
                 <h1>{match.params.category}</h1>
                 {productArray.map(product => (
-                    <div>
+                    <div key={product.id}>
                         <h1>{product.title}</h1>
                         <p>{product.description}</p>
                         <p>{product.price}</p>
