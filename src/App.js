@@ -11,6 +11,7 @@ import SpecificCategoryScreen from './components/Categories/SpecificCategoryScre
 import CartScreen from './components/Cart/CartScreen';
 import { bindActionCreators } from 'redux';
 import { setCart } from './actions/actions';
+import LoginScreen from './components/Login/LoginScreen';
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={HomeScreen} />
             <Route path="/cart" component={CartScreen} />
+            <Route path="/login" component={LoginScreen} />
             <Route exact path="/categories" component={CategoryScreen} />
             <Route path="/categories/:category" component={SpecificCategoryScreen} />
           </div>

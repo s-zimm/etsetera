@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_CATEGORIES, SET_PRODUCTS, SET_CART, UPDATE_CART } from '../actions/actions';
+import { SET_CATEGORIES, SET_PRODUCTS, SET_CART, UPDATE_CART, SET_USER } from '../actions/actions';
 import axios from 'axios';
 
 const initialAuth = {
@@ -24,6 +24,10 @@ const productsReducer = (state = [], action) => {
 }
 
 const authentication = (state = initialAuth, action) => {
+    switch (action.type) {
+        case SET_USER:
+            return action.payload;
+    }
     return state;
 }
 

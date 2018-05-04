@@ -4,6 +4,7 @@ export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_CART = 'SET_CART';
 export const UPDATE_CART = 'UPDATE_CART';
+export const SET_USER = 'SET_USER';
 
 export const setCategories = (categories) => ({
     type: SET_CATEGORIES,
@@ -27,9 +28,13 @@ export const setCart = (userId, jwt) => {
     });
 };
 
-export const updateCart = (product) => {
-    return ({
-        type: UPDATE_CART,
-        payload: product
-    })
-};
+export const updateCart = (product) =>({
+    type: UPDATE_CART,
+    payload: product
+})
+
+
+export const setUserInfo = (userInfo) => ({
+    type: SET_USER,
+    payload: userInfo
+});
